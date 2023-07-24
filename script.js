@@ -1,12 +1,14 @@
 const container = document.querySelector('.container');
+let penColor = 1 //black;
+let currSize = 16; //default size
 
-function createCells(size = 16) {
-    for (let i = 0; i < size; i++) {
+function createCells() {
+    for (let i = 0; i < currSize; i++) {
         const row = document.createElement('div');
         row.classList.add('row');
         container.append(row);
 
-        for (let j = 0; j < size; j++) {
+        for (let j = 0; j < currSize; j++) {
             const cell = document.createElement('div');
             cell.classList.add('cell');
             cell.addEventListener('mouseover', changeColor);
@@ -15,8 +17,17 @@ function createCells(size = 16) {
     }
 }
 
+function clearCanvas() {
+    const rows = document.querySelectorAll('.row');
+    rows.forEach(row => {
+        row.remove();
+    })
+    createCells(currSize);
+}
+
 function changeColor() {
-    if (this.classList.contains('hover')) {
+    console.log(penColor);
+    if (penColor != 0 && this.classList.contains('hover')) {
         if (Number(this.style.opacity != 1)) {
             this.style.opacity = 0.1 + Number(this.style.opacity);
         }
@@ -25,26 +36,44 @@ function changeColor() {
         const g = Math.random() * 255;
         const b = Math.random() * 255;
         this.classList.add('hover');
-        this.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-        this.style.backgroundColor = "black";
+        if (penColor == 2) this.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        else if (penColor == 0) this.style.backgroundColor = "white";
+        else this.style.backgroundColor = "black";
         this.style.opacity = 0.1;
     }
 }
 
 function changeSize() {
-    let newSize = Number(prompt("Enter New Size:"));
-    while (newSize > 100 || newSize < 1) {
-        newSize = Number(prompt("Please Enter Valid Size [1-100]: "));
+    if (this.classList.contains('custom')) {
+        currSize = Number(prompt("Enter New Size:"));
+        while (currSize > 100 || currSize < 1) {
+            currSize = Number(prompt("Please Enter Valid Size [1-100]: "));
+        }
     }
-    const rows = document.querySelectorAll('.row');
-    rows.forEach(row => {
-        row.remove();
-    })
-    createCells(newSize);
+    else if (this.classList.contains('16')) currSize = 16;
+    else if (this.classList.contains('32')) currSize = 32;
+    else currSize = 64;
+
+    clearCanvas();
 }
 
 createCells();
 
-const sizeChanger = document.querySelector('.size');
-sizeChanger.addEventListener('click', changeSize);
+document.querySelector('.eraser').addEventListener('click', () => {
+    penColor = 0;
+})
 
+document.querySelector('.black').addEventListener('click', () => {
+    penColor = 1;
+})
+
+document.querySelector('.rainbow').addEventListener('click', () => {
+    penColor = 2;
+})
+
+document.querySelector('.clear').addEventListener('click', clearCanvas)
+
+const sizeChanger = document.querySelectorAll('.size');
+sizeChanger.forEach(sizeChangeButton => {
+    sizeChangeButton.addEventListener('click', changeSize);
+});
