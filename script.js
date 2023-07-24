@@ -27,7 +27,7 @@ function clearCanvas() {
 
 function changeColor() {
     console.log(penColor);
-    if (penColor != 0 && this.classList.contains('hover')) {
+    if (this.classList.contains('hover')) {
         if (Number(this.style.opacity != 1)) {
             this.style.opacity = 0.1 + Number(this.style.opacity);
         }
@@ -60,14 +60,27 @@ function changeSize() {
 createCells();
 
 document.querySelector('.eraser').addEventListener('click', () => {
+    document.querySelectorAll('.cell').forEach(cell => {
+        cell.classList.remove('hover');
+    })
     penColor = 0;
 })
 
 document.querySelector('.black').addEventListener('click', () => {
+    if (penColor != 1) {
+        document.querySelectorAll('.cell').forEach(cell => {
+            cell.classList.remove('hover');
+        })
+    }   
     penColor = 1;
 })
 
 document.querySelector('.rainbow').addEventListener('click', () => {
+    if (penColor != 2) {
+        document.querySelectorAll('.cell').forEach(cell => {
+            cell.classList.remove('hover');
+        })
+    }   
     penColor = 2;
 })
 
