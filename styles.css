@@ -1,0 +1,21 @@
+.container {
+    border: 2px solid black;
+    height: 500px;
+    width: 500px;
+    margin: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex: 1 1 0;
+}
+
+.cell {
+    flex: 1 1 0;
+}
+
+.hover {
+    background-color: black;
+}
