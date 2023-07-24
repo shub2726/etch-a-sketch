@@ -26,12 +26,16 @@ function changeColor() {
         const b = Math.random() * 255;
         this.classList.add('hover');
         this.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        this.style.backgroundColor = "black";
         this.style.opacity = 0.1;
     }
 }
 
 function changeSize() {
-    const newSize = Number(prompt("Enter New Size:"));
+    let newSize = Number(prompt("Enter New Size:"));
+    while (newSize > 100 || newSize < 1) {
+        newSize = Number(prompt("Please Enter Valid Size [1-100]: "));
+    }
     const rows = document.querySelectorAll('.row');
     rows.forEach(row => {
         row.remove();
