@@ -47,7 +47,7 @@ h1 {
 
 .pen-canvas-container {
     display: flex;
-    gap: 3em;
+    gap: 5em;
     align-items: center;
 }
 
