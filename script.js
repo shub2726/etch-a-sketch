@@ -29,7 +29,7 @@ function changeColor() {
     console.log(penColor);
     if (this.classList.contains('hover')) {
         if (Number(this.style.opacity != 1)) {
-            this.style.opacity = 0.1 + Number(this.style.opacity);
+            this.style.opacity = 0.2 + Number(this.style.opacity);
         }
     } else {
         const r = Math.random() * 255;
@@ -39,7 +39,8 @@ function changeColor() {
         if (penColor == 2) this.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
         else if (penColor == 0) this.style.backgroundColor = "white";
         else this.style.backgroundColor = "black";
-        this.style.opacity = 0.1;
+        this.style.opacity = 0.2;
+        if (penColor == 0) this.style.opacity = 1;
     }
 }
 
@@ -60,6 +61,11 @@ function changeSize() {
 createCells();
 
 document.querySelector('.eraser').addEventListener('click', () => {
+    if (penColor != 0) {
+        document.querySelectorAll('.cell').forEach(cell => {
+            cell.classList.remove('hover');
+        })
+    } 
     document.querySelectorAll('.cell').forEach(cell => {
         cell.classList.remove('hover');
     })

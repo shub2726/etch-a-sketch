@@ -10,15 +10,29 @@
 <body>
     <div class="content">
         <h1>ETCH-A-SKETCH</h1>
-        <button class="size 16">16×16</button>
-        <button class="size 32">32×32</button>
-        <button class="size 64">64×64</button>
-        <button class="size custom">Custom</button>
-        <button class="pen black">Black</button>
-        <button class="pen rainbow">Rainbow</button>
-        <button class="eraser">Eraser</button>
-        <button class="clear">Clear</button>
-        <div class="container">
+        <div class="size-container">
+            <div class="canvas-size">Canvas Size: </div>
+            <button class="size 16">16×16</button>
+            <button class="size 32">32×32</button>
+            <button class="size 64">64×64</button>
+            <button class="size custom">Custom</button>
+        </div>
+        <div class="pen-canvas-container">
+            <div class="pen-container">
+                <div class="canvas-size">Brush<br>Mode:</div>
+                <button class="pen black"></button>
+                <button class="pen rainbow">
+                    <img src="./images/rainbow-button.png">
+                </button>
+                <button class="pen eraser">
+                    <img src="./images/eraser.png">
+                </button>
+                <button class="pen clear">
+                    <img src="./images/reload.png">
+                </button>
+            </div>
+            <div class="container">
+            </div>
         </div>
     </div>
 </body>
