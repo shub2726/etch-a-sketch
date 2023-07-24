@@ -16,7 +16,18 @@ function createCells(size = 16) {
 }
 
 function changeColor() {
-    this.classList.add('hover')
+    if (this.classList.contains('hover')) {
+        if (Number(this.style.opacity != 1)) {
+            this.style.opacity = 0.1 + Number(this.style.opacity);
+        }
+    } else {
+        const r = Math.random() * 255;
+        const g = Math.random() * 255;
+        const b = Math.random() * 255;
+        this.classList.add('hover');
+        this.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        this.style.opacity = 0.1;
+    }
 }
 
 function changeSize() {
